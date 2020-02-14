@@ -1,46 +1,62 @@
 package com.uniovi.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
+import com.uniovi.entities.Mark;
 import com.uniovi.entities.Professor;
 import com.uniovi.services.ProfessorService;
 
-@RestController
+@Controller
 public class ProfessorController {
 
 	@Autowired
 	private ProfessorService professorService;
 	
 	@RequestMapping("/professor/list")
-	public String getList() {
-		return professorService.getProfessor().toString();
+	public String getList(Model model) {
+		model.addAttribute("professorList", professorService.getProfessor());
+		return "professor/list";
+	}
+	
+	@RequestMapping(value = "/professor/add")
+	public String getProfessor() {
+		return "professor/add";
 	}
 
 	@RequestMapping(value="/professor/add", method=RequestMethod.POST)
 	public String setProfessor(@ModelAttribute Professor prof) {
 		professorService.addProfessor(prof);
-		return "Ok";
+		return "redirect:/professor/list";
 	}
 
 	@RequestMapping("/professor/details/{id}")
-	public String getDetail(@PathVariable Long id) {
-		return professorService.getProfessor(id).toString();
+	public String getDetail(Model model, @PathVariable Long id) {
+		model.addAttribute("professor", professorService.getProfessor(id));
+		return "professor/details";
 	}
 	
 	@RequestMapping("/professor/delete/{id}")
 	public String deleteProfessor(@PathVariable Long id) {
 		professorService.deleteProfessor(id);
-		return "Ok";
+		return "redirect:/professor/list";
 	}
 	
-	@RequestMapping(value="/professor/edit", method=RequestMethod.POST)
-	public String setEdit(@ModelAttribute Professor prof) {
+	@RequestMapping(value="/professor/edit/{id}", method=RequestMethod.POST)
+	public String setEdit(Model model, @PathVariable Long id, @ModelAttribute Professor prof) {
+		prof.setId(id);
 		professorService.addProfessor(prof);
-		return "Edited - Ok";
+		return "redirect:/professor/details/" + id;
+	}
+	
+	@RequestMapping(value = "/professor/edit/{id}")
+	public String getEdit(Model model, @PathVariable Long id) {
+		model.addAttribute("professor", professorService.getProfessor(id));
+		return "professor/edit";
 	}
 }
