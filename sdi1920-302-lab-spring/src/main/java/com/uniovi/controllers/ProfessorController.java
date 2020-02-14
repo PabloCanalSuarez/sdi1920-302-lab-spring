@@ -40,11 +40,7 @@ public class ProfessorController {
 	
 	@RequestMapping(value="/professor/edit", method=RequestMethod.POST)
 	public String setEdit(@ModelAttribute Professor prof) {
-		Professor profActual = professorService.getProfessor(prof.getId());
-		profActual.setNombre(prof.getNombre());
-		profActual.setApellido(prof.getApellido());
-		profActual.setDni(prof.getDni());
-		profActual.setCategoria(prof.getCategoria());
+		professorService.addProfessor(prof);
 		return "Edited - Ok";
 	}
 }

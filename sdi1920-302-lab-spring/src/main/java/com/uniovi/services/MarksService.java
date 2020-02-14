@@ -1,10 +1,7 @@
 package com.uniovi.services;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-
-import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +26,6 @@ public class MarksService {
 	}
 
 	public void addMark(Mark mark) {
-		// Si en Id es null le asignamos el ultimo + 1 de la lista
 		marksRepository.save(mark);
 	}
 
