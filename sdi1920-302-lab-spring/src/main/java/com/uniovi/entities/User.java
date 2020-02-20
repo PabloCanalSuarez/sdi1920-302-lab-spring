@@ -26,7 +26,6 @@ public class User {
 	private Set<Mark> marks;
 
 	private String password;
-
 	@Transient // propiedad que no se almacena e la tabla.
 	private String passwordConfirm;
 
