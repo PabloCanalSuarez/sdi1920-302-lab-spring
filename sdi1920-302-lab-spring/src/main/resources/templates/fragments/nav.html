@@ -11,34 +11,25 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<!-- 
-				<li class="active"><a href="/">Menú principal</a></li>
-				<li><a href="/mark/list">Ver Notas</a></li>
-				<li><a href="/mark/add">Agregar Nota</a></li>
-				<li><a href="/mark/filter">Filtrar</a></li>
-				<li><a href="/professor/list">Ver Professores</a></li>
-				<li><a href="/professor/add">Agregar Profesor</a></li>
-				 -->
-
 				<li><a href="/">Home</a></li>
 				<li id="users-menu" class="dropdown">
 					<a class="dropdown-toggle"
-						data-toggle="dropdown" href="#"> Gestión de Notas<span
+						data-toggle="dropdown" href="#" th:text="#{gestionNotas.message}">Gestión de Notas<span
 							class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="/mark/add">Agregar Nota</a></li>
-						<li><a href="/mark/list">Ver Notas</a></li>
+						<li><a href="/mark/add" th:text="#{agregarNota.message}">Agregar Nota</a></li>
+						<li><a href="/mark/list" th:text="#{verNotas.message}">Ver Notas</a></li>
 					</ul>
 				</li>
 				<li id="marks-menu" class="dropdown">
 					<a class="dropdown-toggle"
-						data-toggle="dropdown" href="#"> Gestión de Usuarios<span
+						data-toggle="dropdown" href="#" th:text="#{gestionUsuarios.message}"> Gestión de Usuarios<span
 							class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="/user/add">Agregar Usuario</a></li>
-						<li><a href="/user/list">Ver Usuarios</a></li>
+						<li><a href="/user/add" th:text="#{agregarUsuario.message}">Agregar Usuario</a></li>
+						<li><a href="/user/list" th:text="#{verUsuarios.message}">Ver Usuarios</a></li>
 					</ul>
 				</li>
 			</ul>
