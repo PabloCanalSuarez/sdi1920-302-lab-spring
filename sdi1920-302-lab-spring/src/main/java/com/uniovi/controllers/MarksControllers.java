@@ -44,7 +44,7 @@ public class MarksControllers {
 	public String setMark(@Validated Mark mark, BindingResult result) {
 		addMarkValidator.validate(mark, result);
 		if (result.hasErrors()) {
-			return "/mark/add";
+			return "mark/add";
 		}
 
 		marksService.addMark(mark);

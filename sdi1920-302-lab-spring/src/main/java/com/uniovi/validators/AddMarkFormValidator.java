@@ -23,10 +23,10 @@ public class AddMarkFormValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "score", "Error.empty");
 		
 		if(mark.getDescription().length() < 20) {
-			errors.reject("description", "Error.description.length");
+			errors.rejectValue("description", "Error.description.length");
 		}
 		if(mark.getScore() < 0 || mark.getScore() > 10) {
-			errors.reject("score", "Error.score.range");
+			errors.rejectValue("score", "Error.score.range");
 		}
 	}
 
