@@ -8,24 +8,45 @@
 		<h2 th:text="#{agregarUsuario.message}">Agregar usuario</h2>
 		<form class="form-horizontal" method="post" action="/user/add">
 			<div class="form-group">
+				<label class="control-label col-sm-2" for=”role”>Role:</label>
+				<div class="col-sm-10">
+					<select id="role" class="form-control" name="role">
+						<option th:each="role : ${rolesList}" th:value="${role}" th:text="${role}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="password">Password:</label>
+				<div class="col-sm-10">
+					<input type="password" class="form-control" name="password"
+						placeholder="Introduzca el Password" required="true"
+					/>
+				</div>
+			</div>
+			<div class="form-group">
 				<label class="control-label col-sm-2" for="dni">DNI</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="dni"
-						placeholder="99999999Y" required="true" />
+					<input type="text" class="form-control" name="dni" placeholder="99999999Y"
+						required="true"
+					/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="name" th:text="#{usuarioName.message}">Nombre:</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="name"
-						th:placeholder="#{namePH.message}" required="true" />
+						th:placeholder="#{namePH.message}" required="true"
+					/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="lastName" th:text="#{usuarioApellidos.message}">Apellidos:</label>
+				<label class="control-label col-sm-2" for="lastName"
+					th:text="#{usuarioApellidos.message}"
+				>Apellidos:</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="lastName"
-						th:placeholder="#{surnamePH.message}" required="true" />
+						th:placeholder="#{surnamePH.message}" required="true"
+					/>
 				</div>
 			</div>
 			<div class="form-group">
