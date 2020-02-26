@@ -8,6 +8,14 @@
 
 	<div class="container">
 		<h2 th:text="#{notas.message}"></h2>
+		<form class="navbar-form" action="/mark/list">
+			<div class="form-group">
+				<input name="searchText" type="text" class="form-control" size="50"
+					placeholder="Buscar por descripción o nombre del alumno">
+			</div>
+			<button type="submit" class="btn btn-default">Buscar</button>
+		</form>
+
 		<p th:text="#{notasSub.message}"></p>
 		<button type="button" id="updateButton" class="btn btn-default"
 			th:text="#{updateBtn.message}">Actualizar</button>
