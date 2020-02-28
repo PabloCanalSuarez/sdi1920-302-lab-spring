@@ -1,7 +1,11 @@
 package com.uniovi;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,10 +41,22 @@ public class CustomConfiguration implements WebMvcConfigurer {
 
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-		int page = 0;
-		int size = 5;
-		PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();
-		resolver.setFallbackPageable(PageRequest.of(page, size));
-		argumentResolvers.add(resolver);
+		Properties prop = new Properties();
+		try {
+			FileInputStream file = new FileInputStream("src/main/resources/config.properties");
+			
+			prop.load(file);
+		
+			int page = Integer.parseInt(prop.getProperty("spring.data.web.pageable.page-parameter"));
+			int size = Integer.parseInt(prop.getProperty("spring.data.web.pageable.default-page-size"));
+			PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();
+			resolver.setFallbackPageable(PageRequest.of(page, size));
+			argumentResolvers.add(resolver);
+			
+		} catch (FileNotFoundException e) {
+			System.out.println("### ERROR: config.properties not found ###");
+		} catch (IOException e) {
+			System.out.println("### ERROR: failed trying to load config.properties ###");
+		}
 	}
 }
