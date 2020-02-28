@@ -32,14 +32,13 @@
 	    <td th:text="${professor.nombre}">nombre</td>
 	    <td th:text="${professor.apellido}">apellido</td>
 	    <td th:text="${professor.categoria}">cat</td>
-	    <td><a th:href="${'/professor/details/' + professor.id}">detalles</a></td>
-	    <!-- <td><a th:href="${'/professor/edit/' + professor.id}">modificar</a></td> -->
+	    <td><a th:href="${'/professor/details/' + professor.id}" sec:authorize="hasAnyRole('ROLE_PROFESSOR','ROLE_ADMIN')">detalles</a></td>
 	    <td><form method="post" action="/professor/edit">
 	    		<div><input type="hidden" class="form-control" name="id" required="true" th:value="${professor.id}"/></div>
-	    		<button type="submit" class="btn btn-primary">modificar</button>
+	    		<button type="submit" class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')">modificar</button>
 	    	</form>
 	    </td>
-	    <td><a th:href="${'/professor/delete/' + professor.id}">eliminar</a></td>
+	    <td><a th:href="${'/professor/delete/' + professor.id}" sec:authorize="hasRole('ROLE_ADMIN')">eliminar</a></td>
 	  </tr>
 	</tbody>
   </table>
