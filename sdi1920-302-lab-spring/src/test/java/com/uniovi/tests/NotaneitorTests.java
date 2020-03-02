@@ -103,17 +103,38 @@ public class NotaneitorTests {
 	public void PR06() {
 		// Vamos al formulario de registro
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
+		
 		// Rellenamos el formulario.
 		PO_RegisterView.fillForm(driver, "99999990A", "Josefo", "Perez", "77777", "77777");
 		PO_View.getP();
-		// COmprobamos el error de DNI repetido.
+		// Comprobamos el error de DNI repetido.
 		PO_RegisterView.checkKey(driver, "Error.signup.dni.duplicate", PO_Properties.getSPANISH());
+		
 		// Rellenamos el formulario.
-		PO_RegisterView.fillForm(driver, "99999990B", "Jose", "Perez", "77777", "77777");
-		// COmprobamos el error de Nombre corto .
+		PO_RegisterView.fillForm(driver, "1", "Josefo", "Perez", "77777", "77777");
+		// Comprobamos el error de Dni corto .
+		PO_RegisterView.checkKey(driver, "Error.signup.dni.length", PO_Properties.getSPANISH());
+		
+		// Rellenamos el formulario.
+		PO_RegisterView.fillForm(driver, "12312312312312312123123123123", "Josefo", "Perez", "77777", "77777");
+		// Comprobamos el error de Dni largo .
+		PO_RegisterView.checkKey(driver, "Error.signup.dni.length", PO_Properties.getSPANISH());
+		
+		// Rellenamos el formulario.
+		PO_RegisterView.fillForm(driver, "11111", "Jose", "Perez", "77777", "77777");
+		// Comprobamos el error de Nombre corto .
 		PO_RegisterView.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH());
+		
 		// Rellenamos el formulario.
-		PO_RegisterView.fillForm(driver, "99999990B", "Josefo", "Per", "77777", "77777");
+		PO_RegisterView.fillForm(driver, "22222", "Josefo", "Perez", "7", "7");
+		// Comprobamos el error de password corta
+		PO_RegisterView.checkKey(driver, "Error.signup.password.length", PO_Properties.getSPANISH());
+		
+		// Rellenamos el formulario.
+		PO_RegisterView.fillForm(driver, "33333", "Josefo", "Perez", "77777", "123456");
+		// Comprobamos el error de password mismatch
+		PO_RegisterView.checkKey(driver, "Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());
+
 	}
 
 }
