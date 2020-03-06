@@ -8,29 +8,33 @@
 
 <div class="container">
   <h2>Agregar Profesor</h2>
-  <form class="form-horizontal" method="post" action="/professor/add">
+  <form class="form-horizontal" method="post" action="/professor/add" th:object="${professor}">
     <div class="form-group">
       <label class="control-label col-sm-2" for="description">DNI:</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" name="dni" placeholder="DNI" required="true" />
+        <span class="text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="pwd">Nombre:</label>
       <div class="col-sm-10">          
         <input type="text" class="form-control" name="nombre" placeholder="Nombre" required="true" />
+        <span class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="pwd">Apellidos:</label>
       <div class="col-sm-10">          
         <input type="text" class="form-control" name="apellido" placeholder="Apellido" required="true" />
+        <span class="text-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></span>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="pwd">Categoría:</label>
       <div class="col-sm-10">          
         <input type="text" class="form-control" name="categoria" placeholder="Categoría" required="true" />
+        <span class="text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></span>
       </div>
     </div>
     <div class="form-group">        

@@ -83,4 +83,43 @@ public class PO_PrivateView extends PO_NavView {
 		// Y esperamos a que NO aparezca la ultima "Nueva Nota 1"
 		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, "Nota Nueva 1", PO_View.getTimeout());
 	}
+
+	public static void fillFormAddUser(WebDriver driver, String dniF, String nameF, String surnameF, String catF) {
+		// Esperamos 5 segundo a que carge el DOM porque en algunos equipos falla
+		SeleniumUtils.esperarSegundos(driver, 5);		
+		WebElement dni = driver.findElement(By.name("dni"));
+		dni.clear();
+		dni.sendKeys(dniF);
+		
+		WebElement name = driver.findElement(By.name("nombre"));
+		name.clear();
+		name.sendKeys(nameF);
+		
+		WebElement surname = driver.findElement(By.name("apellido"));
+		surname.clear();
+		surname.sendKeys(surnameF);
+		
+		WebElement cat = driver.findElement(By.name("categoria"));
+		cat.clear();
+		cat.sendKeys(catF);
+		
+		By boton = By.className("btn");
+		driver.findElement(boton).click();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
